@@ -2,11 +2,6 @@ var https = require('https');
 var resultsArr = [];
 var resultsAddedEvent;
 var domainTshd = 50;
-var namecheapUser = 'sonicraf';
-var namecheapApikey = '56fd5a6875204b3380a5eb62d5c0e880';
-var namecheapApiUrl = 'api.sandbox.namecheap.com';
-var namecheapApiQuery = '/xml.response?ApiUser=[USER_NAME]&ApiKey=[API_KEY]&UserName=[USER_NAME]&ClientIP=[IP]&Command=namecheap.domains.check&DomainList=[DOMAINS]';
-var namecheapClientIP = '198.228.204.144';
 
 module.exports = {
 
@@ -36,7 +31,7 @@ module.exports = {
 function mainRequest(p, showResponseXml){
 
     // do the GET request
-    var opt = CreateRequestOptions(p);
+    var opt = CreateRequestOptions(p, getNameCheapSettings());
     console.log('Executing Request...')
     var reqGet = https.request( opt, function(res) { makeRequest(res, showResponseXml) });
     reqGet.end();
@@ -47,14 +42,16 @@ function mainRequest(p, showResponseXml){
 
 }
 
-function CreateRequestOptions(pathString) {
-    var url = namecheapApiUrl
-    var p = namecheapApiQuery
-        .replace('[USER_NAME]', namecheapUser)
-        .replace('[API_KEY]', namecheapApikey)
+function CreateRequestOptions(pathString, ncSettings) {
+    var url = ncSettings.url
+    var p = ncSettings.query
+        .replace('[USER_NAME]', ncSettings.user)
+        .replace('[API_KEY]', ncSettings.apiKey)
         .replace('[DOMAINS]', pathString)
-        .replace('[IP]', namecheapClientIP)
-        .replace('[USER_NAME]', namecheapUser);
+        .replace('[IP]', ncSettings.clientIp)
+        .replace('[USER_NAME]', ncSettings.user);
+
+    // console.log(p);
 
     var optionsget = {
         host: url,
@@ -127,4 +124,14 @@ function GetObjectFromXml(xmlObject){
         }
     }
     return null;
+}
+
+function getNameCheapSettings() {
+    return {
+        user:       'sonicraf',
+        apiKey:     '56fd5a6875204b3380a5eb62d5c0e880',
+        url:        'api.sandbox.namecheap.com',
+        query:      '/xml.response?ApiUser=[USER_NAME]&ApiKey=[API_KEY]&UserName=[USER_NAME]&ClientIP=[IP]&Command=namecheap.domains.check&DomainList=[DOMAINS]',
+        clientIp:   '74.66.231.216' // '198.228.204.144'
+    }
 }
