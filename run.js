@@ -1,6 +1,6 @@
 var https = require('https');
 var mgr = require('./domainQueryMgr.js');
-
+var domainLimit = 50;
 mgr.resultAddedEvt(resultsReceived)
 
 
@@ -8,7 +8,7 @@ mgr.resultAddedEvt(resultsReceived)
 // [1]: batch size
 // [2]: show response xml
 mgr.checkDomain(
-    GenerateDomainNames(30),
+    GenerateDomainNames(domainLimit),
     20,
     false
 );
@@ -27,7 +27,7 @@ function GenerateDomainNames(limit) {
 }
 
 function resultsReceived() {
-    if (mgr.results.length >= domains.length){  // wait for all batches to finish
+    if (mgr.results.length >= domainLimit){  // wait for all batches to finish
 
         console.log('\n\nAvailable Domains!')
         for (var i=0; i<mgr.results.length; i++){
