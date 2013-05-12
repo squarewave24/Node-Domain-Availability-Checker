@@ -2,8 +2,7 @@ var https = require('https');
 var mgr = require('./domainQueryMgr.js');
 
 mgr.resultAddedEvt(function() {
-    if (mgr.results.length >= domains.length){
-        // all domains checked!
+    if (mgr.results.length >= domains.length){  // wait for all batches to finish
 
         console.log('\n\nAvailable Domains!')
         for (var i=0; i<mgr.results.length; i++){
@@ -11,7 +10,6 @@ mgr.resultAddedEvt(function() {
             if (res.isAvailable){
                 process.stdout.write('  ' + res.domain + '   ');
                 if (i % 10 == 0) process.stdout.write('\n');
-                // console.log('\t' + res.domain);
             }
         }
 
@@ -32,7 +30,7 @@ mgr.checkDomain(domains, 20, false);
 
 
 function GenerateDomainNames(limit) {
-    var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z'];
+    var letters = ("abcdefghijklmnopqrstuvwxyz").split('');
     var domains = [];
     for (var l1 in letters)
         for (var l2 in letters)
