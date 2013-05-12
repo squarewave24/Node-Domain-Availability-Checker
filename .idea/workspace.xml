@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97307ba1-14e8-44a4-947c-51e05680580f" name="Default" comment="" />
+    <list default="true" id="97307ba1-14e8-44a4-947c-51e05680580f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/package.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run.js" afterPath="$PROJECT_DIR$/run.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="DomainAvailabilityChecker.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/run.js" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368383067301" ignored="false" />
@@ -29,7 +34,7 @@
       <file leaf-file-name="run.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="34" selection-start="813" selection-end="813" vertical-scroll-proportion="0.5034722">
+            <state line="31" column="0" selection-start="817" selection-end="817" vertical-scroll-proportion="0.5381944">
               <folding />
             </state>
           </provider>
@@ -50,6 +55,9 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitLogSettings">
     <option name="myDateState">
@@ -127,6 +135,14 @@
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -247,7 +263,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="34" selection-start="813" selection-end="813" vertical-scroll-proportion="0.5034722">
+        <state line="31" column="0" selection-start="817" selection-end="817" vertical-scroll-proportion="0.5381944">
           <folding />
         </state>
       </provider>
