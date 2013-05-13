@@ -128,10 +128,10 @@ function GetObjectFromXml(xmlObject){
 
 function getNameCheapSettings() {
     return {
-        user:       'sonicraf',
-        apiKey:     '56fd5a6875204b3380a5eb62d5c0e880',
+        user:       'xx',
+        apiKey:     'xx',
         url:        'api.sandbox.namecheap.com',
         query:      '/xml.response?ApiUser=[USER_NAME]&ApiKey=[API_KEY]&UserName=[USER_NAME]&ClientIP=[IP]&Command=namecheap.domains.check&DomainList=[DOMAINS]',
-        clientIp:   '74.66.231.216' // '198.228.204.144'
+        clientIp:   'xx'
     }
 }
