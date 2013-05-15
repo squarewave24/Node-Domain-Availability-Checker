@@ -1,11 +1,11 @@
-var https = require('https');
+var http = require('http');
 var resultsArr = [];
 var resultsAddedEvent;
 var domainTshd = 50;
 
 module.exports = {
 
-    checkDomain: function(domains, batchSize, showResponseXml) {
+    checkDomains: function(domains, batchSize, showResponseXml) {
         domainTshd  = batchSize;
         if (domains)      {
             console.log('domains to process: ' + domains.length + ' batch size: ' + domainTshd);
@@ -32,17 +32,37 @@ function mainRequest(p, showResponseXml){
 
     // do the GET request
     var opt = CreateRequestOptions(p, getNameCheapSettings());
-    console.log('Executing Request...')
-    var reqGet = https.request( opt, function(res) { makeRequest(res, showResponseXml) });
+    var reqGet = http.request( opt, function(res) {
+
+        if (res.statusCode != 200){
+            console.log('STATUS: ' + res.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(res.headers));
+        }
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            if (showResponseXml)
+                console.log('ResponseXml: ' + chunk);
+            if (GetAvalabilityStatus(chunk)){
+                if (typeof resultsAddedEvent == "function"){
+                    resultsAddedEvent();
+                }
+            }
+            else
+                console.log('ERROR: could not get status from: ' + chunk);
+
+        });
+    });
     reqGet.end();
     reqGet.on('error', function(e) {
         console.error(e);
-        console.error(e.stack);
+//        console.error(e.stack);
+        console.dir(e);
     });
 
 }
 
 function CreateRequestOptions(pathString, ncSettings) {
+    console.log('Creating Request ') //  + url + p)
     var url = ncSettings.url
     var p = ncSettings.query
         .replace('[USER_NAME]', ncSettings.user)
@@ -51,64 +71,39 @@ function CreateRequestOptions(pathString, ncSettings) {
         .replace('[IP]', ncSettings.clientIp)
         .replace('[USER_NAME]', ncSettings.user);
 
-    // console.log(p);
-
     var optionsget = {
         host: url,
-        // (no http/https !)
-        port: 443,
+        // (no http/http !)
+        port: 80,
         path: p.replace('{0}', pathString),
         method: 'GET' // do GET
     };
     return optionsget;
 }
 
-function makeRequest(res, showResponseXml) {
-    res.on('data', function(d) {
+function GetAvalabilityStatus(d) {
+    try {
 
-        var parseString = require('xml2js').parseString;
-        parseString(d, function (err, result) {
-
-            if (showResponseXml)
-                console.log(JSON.stringify(result));
+        return require('xml2js').parseString(d, function (err, result) {
 
             var obj = GetObjectFromXml(result);
-            var status = GetAvalabilityStatus(obj);
-            if (status){
-                // resultsArr.push(status);
-                if (typeof resultsAddedEvent == "function"){
-                    resultsAddedEvent();
-                }
-            }
-            else
-                console.log('staus is empty'  + d);
-        });
-    });
-
-    function GetAvalabilityStatus(obj) {
-        try {
             var resposeArr = obj.ApiResponse.CommandResponse[0].DomainCheckResult;
             console.log('\nremote call completed. **** Execution Time: ' + obj.ApiResponse.ExecutionTime + ' domains checked: ' + resultsArr.length);
             for (var i in resposeArr){
                 var r = resposeArr[i];
-
-                // console.log(!!r.$.Available + ' from: ' + r.$.Available)
-
-                resultsArr.push(
-                    {
-                        isAvailable: r.$.Available == 'true',
-                        domain: r.$.Domain
-                    }
-                );
+                resultsArr.push({
+                    isAvailable: r.$.Available == 'true',
+                    domain: r.$.Domain
+                });
             }
-
             return true;
-        }
-        catch (e) {
-            console.log('problem with ' + e.message);
-        }
-        return false;
+
+        });
     }
+    catch (e) {
+        console.log('problem with ' + e.message);
+    }
+    return false;
 }
 
 function GetObjectFromXml(xmlObject){
@@ -129,9 +124,10 @@ function GetObjectFromXml(xmlObject){
 function getNameCheapSettings() {
     return {
         user:       'sonicraf',
-        apiKey:     '56fd5a6875204b3380a5eb62d5c0e880',
+        apiKey:     '4ba061d21c2a49cdb1d90e87fc241aa2',
         url:        'api.sandbox.namecheap.com',
         query:      '/xml.response?ApiUser=[USER_NAME]&ApiKey=[API_KEY]&UserName=[USER_NAME]&ClientIP=[IP]&Command=namecheap.domains.check&DomainList=[DOMAINS]',
-        clientIp:   '74.66.231.216' // '198.228.204.144'
+        clientIp:    '198.228.201.161' // '74.66.231.216' //
     }
 }
+
