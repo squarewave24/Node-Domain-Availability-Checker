@@ -40,6 +40,9 @@ function mainRequest(p, showResponseXml){
         }
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
+
+            console.log('\n *****************************************  data received.. ' + chunk)
+
             if (showResponseXml)
                 console.log('ResponseXml: ' + chunk);
             if (GetAvalabilityStatus(chunk)){
@@ -51,8 +54,12 @@ function mainRequest(p, showResponseXml){
                 console.log('ERROR: could not get status from: ' + chunk);
 
         });
+//        res.on('end', function() {
+//            console.log(' ************************************************** the end')
+//        });
     });
     reqGet.end();
+
     reqGet.on('error', function(e) {
         console.error(e);
 //        console.error(e.stack);
@@ -62,7 +69,6 @@ function mainRequest(p, showResponseXml){
 }
 
 function CreateRequestOptions(pathString, ncSettings) {
-    console.log('Creating Request ') //  + url + p)
     var url = ncSettings.url
     var p = ncSettings.query
         .replace('[USER_NAME]', ncSettings.user)
@@ -70,6 +76,8 @@ function CreateRequestOptions(pathString, ncSettings) {
         .replace('[DOMAINS]', pathString)
         .replace('[IP]', ncSettings.clientIp)
         .replace('[USER_NAME]', ncSettings.user);
+
+    console.log('Creating Request ' + url + p) //  + url + p)
 
     var optionsget = {
         host: url,

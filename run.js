@@ -1,5 +1,5 @@
 var mgr = require('./domainQueryMgr.js');
-var domainLimit = 20;
+var domainLimit = 10;
 var extensions = ['io'];
 mgr.resultAddedEvt(resultsReceived)
 
@@ -9,7 +9,7 @@ mgr.resultAddedEvt(resultsReceived)
 // [2]: show response xml
 mgr.checkDomains(
     GenerateDomainNames(domainLimit),
-    2,
+    20,
     false
 );
 
@@ -55,7 +55,7 @@ function appendLetter(x,y,letter, arr){
 function resultsReceived() {
 
     console.log(' *** results received ** ' + mgr.results.length);
-    if (mgr.results.length >= domainLimit){  // wait for all batches to finish
+    if ( mgr.results.length >= domainLimit){  // wait for all batches to finish
 
         console.log('\n\nAvailable Domains!')
         for (var i=0; i<mgr.results.length; i++){

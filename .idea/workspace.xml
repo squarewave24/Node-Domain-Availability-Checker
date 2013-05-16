@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97307ba1-14e8-44a4-947c-51e05680580f" name="Default" comment="cleanup">
+    <list default="true" id="97307ba1-14e8-44a4-947c-51e05680580f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/domainQueryMgr.js" afterPath="$PROJECT_DIR$/domainQueryMgr.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run.js" afterPath="$PROJECT_DIR$/run.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/xml2js/node_modules/sax/test/stray-ending.js" afterPath="$PROJECT_DIR$/node_modules/xml2js/node_modules/sax/test/stray-ending.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/xml2js/node_modules/sax/test/unquoted.js" afterPath="$PROJECT_DIR$/node_modules/xml2js/node_modules/sax/test/unquoted.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DomainAvailabilityChecker.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/run.js" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368621134579" ignored="false" />
-    <file path="/Dummy.txt" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368622316385" ignored="false" />
-    <file path="/domainQueryMgr.js" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368622442291" ignored="false" />
+    <file path="/run.js" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368670514212" ignored="false" />
+    <file path="/Dummy.txt" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368622498529" ignored="false" />
+    <file path="/domainQueryMgr.js" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368721547532" ignored="false" />
     <file path="/fragment.js2" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368401682349" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="97307ba1-14e8-44a4-947c-51e05680580f" time="1368721568685" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +34,7 @@
       <file leaf-file-name="run.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="20" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0">
+            <state line="3" column="28" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -45,7 +43,7 @@
       <file leaf-file-name="domainQueryMgr.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/domainQueryMgr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="40" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.3298611">
+            <state line="80" column="4" selection-start="2482" selection-end="2482" vertical-scroll-proportion="0.052083332">
               <folding>
                 <element signature="e#111#866#0" expanded="false" />
               </folding>
@@ -186,13 +184,18 @@
       <created>1368397836842</created>
       <updated>1368397836842</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactoring.. fixed partial response chunk error">
+      <created>1368622505048</created>
+      <updated>1368622505048</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="22" width="1660" height="1010" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -206,7 +209,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910313" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -254,7 +256,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring.. fixed partial response chunk error" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -269,6 +271,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="cleanup" />
+    <MESSAGE value="refactoring.. fixed partial response chunk error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -308,14 +311,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="20" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0">
+        <state line="3" column="28" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/domainQueryMgr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="40" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.3298611">
+        <state line="80" column="4" selection-start="2482" selection-end="2482" vertical-scroll-proportion="0.052083332">
           <folding>
             <element signature="e#111#866#0" expanded="false" />
           </folding>
