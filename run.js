@@ -1,26 +1,47 @@
 var mgr = require('./domainQueryMgr.js');
-var domainLimit = 10;
+var domainLimit = 242;
 var extensions = ['io'];
+var batch = 0;
+var responseArr = [];
 mgr.resultAddedEvt(resultsReceived)
 
+
+var domains = GenerateDomainNames(domainLimit);
 
 // [0]: domains to check (generate up to n)
 // [1]: batch size
 // [2]: show response xml
 mgr.checkDomains(
-    GenerateDomainNames(domainLimit),
-    20,
-    false
+    domains,
+    3,
+    false,
+    receiveResults
 );
 
 
+function receiveResults(resposeArr, time){
 
-
-
-
-    function getLetters() {
-        return ("abcdefghijklmnopqrstuvwxyz").split('');
+//    console.log('batch ' + batch  + 'received with ' + resposeArr.length + ' results. in: ' + time);
+    if (batch++ == 0)
+        console.log('available!');
+    for (var i=0; i<resposeArr.length; i++){
+        var res = resposeArr[i];
+        responseArr.push(res);
+        if (res.isAvailable){
+            process.stdout.write('  ' + res.domain + '   ');
+            if (i % 10 == 0) process.stdout.write('\n');
+        }
     }
+
+    if (responseArr.length == domains.length){
+        console.log('finished..');
+    }
+}
+
+function getLetters() {
+    return ("abcdefghijklmnopqrstuvwxyz").split('');
+}
+
 function GenerateDomainNames(limit, wordSize) {
     var domains = [];
     var letters = getLetters();
