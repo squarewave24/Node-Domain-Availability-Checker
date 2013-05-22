@@ -6,7 +6,7 @@ var responseArr = [];
 mgr.resultAddedEvt(resultsReceived)
 
 
-var domains = GenerateDomainNames(domainLimit);
+var domains = GenerateDomainNames(domainLimit, 'r');
 
 // [0]: domains to check (generate up to n)
 // [1]: batch size
@@ -42,7 +42,7 @@ function getLetters() {
     return ("abcdefghijklmnopqrstuvwxyz").split('');
 }
 
-function GenerateDomainNames(limit, wordSize) {
+function GenerateDomainNames(limit, startingLetter, wordSize) {
     var domains = [];
     var letters = getLetters();
 //    var arr = [];
@@ -59,6 +59,7 @@ function GenerateDomainNames(limit, wordSize) {
 //   console.dir(arr);
 
     for (var l1 in letters)
+        if (!startingLetter || letters[l1] == startingLetter);
         for (var l2 in letters)
             for (var l3 in letters)
                 if (limit-- > 0)

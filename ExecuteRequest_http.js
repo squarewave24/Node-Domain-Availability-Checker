@@ -59,7 +59,8 @@ function parseResponseObjects(responseXml, executionTime) {
                     console.log(obj.ApiResponse.Errors[e]);
 
             // parse objects
-            var res = obj.ApiResponse.CommandResponse;
+            var res = resolve(obj, 'ApiResponse.CommandResponse');
+            ///console.log(res);
             executionTime = obj.ApiResponse.ExecutionTime;
             if (res){
                for (var i in res){
@@ -105,4 +106,16 @@ function CreateRequestOptions(pathString, ncSettings) {
         method: 'GET' // do GET
     };
     return optionsget;
+}
+
+function resolve(obj, propertyPath) {
+    if (!propertyPath) return;
+
+    var props = propertyPath.split('.');
+    var o = obj;
+    for(var i in props) {
+        o = o[props[i]];
+        if(!o) return false;
+    }
+    return o;
 }

@@ -45,3 +45,15 @@ function getNameCheapSettings() {
     }
 }
 
+function resolve(obj, propertyPath) {
+    if (!propertyPath) return;
+
+    var props = propertyPath.split('.');
+    var o = obj;
+    for(var i=1; i<props.length; i++) {
+        o = o[props[i]];
+        if(!o) return false;
+    }
+    return o;
+}
+
