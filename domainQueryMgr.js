@@ -7,22 +7,22 @@ var request = require('./ExecuteRequest_http');
 
 module.exports = {
 
-    checkDomains: function(domains, batchSize, showResponseXml, callbackFunction) {
+    checkDomains: function(domains, batchSize, showResponseXml, callbackFunction, errHandler) {
         domainTshd  = batchSize;
         if (domains)      {
             console.log('domains to process: ' + domains.length + ' batch size: ' + domainTshd);
-            if (domains.length > domainTshd){
+            if (Array.isArray(domains) && domains.length > domainTshd){
                 var domainsTmp = domains.slice(0);
                 while (domainsTmp.length){
                     var arr = domainsTmp.splice(0,domainTshd);
                     // mainRequest(arr.toString(), showResponseXml);
-                    request.ExecuteRequest(arr.toString(), getNameCheapSettings(), showResponseXml, callbackFunction);
+                    request.ExecuteRequest(arr.toString(), getNameCheapSettings(), showResponseXml, callbackFunction, errHandler);
 
                 }
             }
             else
                 // mainRequest(domains.toString(), showResponseXml);
-                request.ExecuteRequest(domains.toString(), false, showResponseXml, callbackFunction);
+                request.ExecuteRequest(domains.toString(), getNameCheapSettings(), showResponseXml, callbackFunction, errHandler);
 
         }
     },

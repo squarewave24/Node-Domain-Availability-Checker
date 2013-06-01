@@ -3,7 +3,7 @@
 var request = 0;
 
 module.exports = {
-    ExecuteRequest: function(path,ncSettings, showResponseXml, requestResultsEvent) {
+    ExecuteRequest: function(path,ncSettings, showResponseXml, requestResultsEvent, errHandler) {
         // do the GET request
         var body = '';
         var opt = CreateRequestOptions(path, ncSettings);
@@ -26,7 +26,7 @@ module.exports = {
                     console.log('body: ' + body.toString());
 
                 var executionTime = null;
-                var arr = parseResponseObjects(body, executionTime);
+                var arr = parseResponseObjects(body, executionTime, errHandler);
                 if (arr && requestResultsEvent)
                     requestResultsEvent(arr, executionTime);
 
@@ -35,15 +35,17 @@ module.exports = {
         reqGet.end();
 
         reqGet.on('error', function(e) {
+            console.log(' ** Rquest ERROR ** ');
             console.error(e);
             console.dir(e);
+//            requestResultsEvent(e);
         });
 
     }
 }
 
 
-function parseResponseObjects(responseXml, executionTime) {
+function parseResponseObjects(responseXml, executionTime, errHandler) {
     var resultsArr = [];
 
     require('xml2js').parseString(responseXml, function (err, obj) {
@@ -55,8 +57,11 @@ function parseResponseObjects(responseXml, executionTime) {
         try {
             // check for errors
             if (obj.ApiResponse && obj.ApiResponse.Errors)
-                for (var e in obj.ApiResponse.Errors)
+                for (var e in obj.ApiResponse.Errors)   {
+                    if (errHandler)
+                        errHandler(obj.ApiResponse.Errors[e].Error);
                     console.log(obj.ApiResponse.Errors[e]);
+                }
 
             // parse objects
             var res = resolve(obj, 'ApiResponse.CommandResponse');
@@ -88,6 +93,11 @@ function parseResponseObjects(responseXml, executionTime) {
 
 
 function CreateRequestOptions(pathString, ncSettings) {
+    console.log('path: ' + pathString);
+    console.log('ncSettings: ' + ncSettings);
+    console.log('ncsettings.url: ' + ncSettings.url);
+    console.log('ncSettings.query: ' + ncSettings.query);
+
     var url = ncSettings.url
     var p = ncSettings.query
         .replace('[USER_NAME]', ncSettings.user)

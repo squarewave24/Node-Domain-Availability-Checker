@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <link rel="stylesheet" href="/include/bootstrap/css/bootstrap.css"/>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/include/jquery-1.7.2.js" type="text/javascript"></script>
+    <script language="JavaScript">
+        var socket = io.connect('http://localhost');
+          socket.on('error', function(err){
+               logError(err);
+          }) ;
+//        socket.on('news', function (data) {
+//            socket.send(' *************************************** hi');
+//            console.log(data);
+//            socket.emit('my other event', { my: 'data' });
+//        });
+//        function sendMsg(msg){
+//
+//            socket.send(msg, function() { console.log('ack');})
+//        }
+
+        function searchDomains() {
+            var func = $;
+            var searchMask = func('#SearchMask').val();
+
+            var domains = ['tv','com','net','cc','io'];
+            for (var i in domains){
+                var name = searchMask + '.' +  domains[i];
+                console.log('searching domians...' + name);
+                socket.emit('searchDomains', name, processResults);
+            }
+
+        }
+
+        function processResults(result){
+
+
+            if (result){
+                if ($.isArray(result))
+                    for (var i in result)
+                        processResult(result[i]);
+                else
+                    processResult(result);
+            }
+
+            function processResult(r) {
+                var statusCss = r.isAvailable ? 'alert alert-success' : 'text-error';
+                $('#ResultsDiv').append('<div class="' + statusCss+ '">' + r.domain  + '</div>');
+            }
+        }
+
+        function logError(err){
+            if ($.isArray(err))
+                for (var i in err)
+                    $('#Errors').append('<div>'+ err[i] +'</div>');
+            else
+
+                $('#Errors').append('<div>'+ err +'</div>');
+        }
+
+//        sendMsg('foooo');
+    </script>
+</head>
+<body>
+
+<div class="well">
+
+    <h4>Check Domain Availability.</h4>
+</div>
+
+<br />
+<input type="text" id="SearchMask" class="input-medium search-query" />
+
+<input class="btn" type="button" value="Search!" onclick="javascript:searchDomains()" />
+
+
+
+
+<div id="ResultsDiv" />
+<br />
+<div id="Errors" class="text-error"></div>
+</body>
+
+
+</html>
